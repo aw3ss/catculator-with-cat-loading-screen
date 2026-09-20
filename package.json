@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "tsx": "^4.23.15",
+    "webapkify": "^0.1.6"
+  }
+}

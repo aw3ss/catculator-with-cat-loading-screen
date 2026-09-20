@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#fce4ec</color>
+    <color name="colorPrimary">#fce4ec</color>
+    <color name="colorPrimaryDark">#fce4ec</color>
+    <color name="ic_launcher_background">#fce4ec</color>
+    <color name="windowBackground">#fce4ec</color>
+    <string name="app_name">Catculator</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    </style>
+</resources>

@@ -1,0 +1,504 @@
+/* ============================================================
+   🎨 БАЗОВЫЕ СТИЛИ
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 175%;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+
+  /* 🌸 Пастельный градиент */
+  background: linear-gradient(135deg, #fce4ec 0%, #e3f2fd 50%, #f3e5f5 100%);
+  background-size: 200% 200%;
+  animation: pastel-shift 12s ease infinite;
+
+  color: #5a4a5a;
+  transition: background 0.5s ease, color 0.5s ease;
+  overflow-x: hidden;
+}
+
+@keyframes pastel-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================================================
+   🐱 ЭКРАН ЗАГРУЗКИ
+   ============================================================ */
+.loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  background: linear-gradient(135deg, #fce4ec 0%, #e3f2fd 50%, #f3e5f5 100%);
+  background-size: 200% 200%;
+  animation: pastel-shift 12s ease infinite;
+
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loading {
+  max-width: 500px;
+  text-align: center;
+  padding: 40px 30px;
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 8px 32px rgba(180, 150, 200, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.loading__title {
+  display: block;
+  font-family: 'Comfortaa', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #7a5c7a;
+  margin-bottom: 0.4rem;
+}
+
+.loading__author {
+  display: block;
+  font-family: 'Pacifico', cursive;
+  font-size: 0.95rem;
+  color: #b39dbb;
+  margin: 0.4rem 0 1.8rem 0;
+}
+
+.loading__anim {
+  display: inline-block;
+  font-size: 3.2rem;
+  animation: cat-spin 1.6s infinite ease-in-out;
+  filter: drop-shadow(0 4px 6px rgba(180, 150, 200, 0.35));
+}
+
+@keyframes cat-spin {
+  0%   { transform: rotate(0deg)   scale(1); }
+  50%  { transform: rotate(180deg) scale(1.15); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ============================================================
+   🧮 ОБЁРТКА ПРИЛОЖЕНИЯ
+   ============================================================ */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.app.is-visible {
+  opacity: 1;
+  animation: app-slide-in 0.6s ease;
+}
+
+@keyframes app-slide-in {
+  0%   { transform: translateY(20px); }
+  100% { transform: translateY(0); }
+}
+
+/* ============================================================
+   🎨 ТЕМЫ (светлая / тёмная) — ПАСТЕЛЬНАЯ ПАЛИТРА
+   ============================================================ */
+:root {
+  /* --- Светлая пастельная тема --- */
+  --bg-calculator:  rgba(255, 250, 253, 0.85);
+  --bg-display:     #e8ddf0;
+  --text-display:   #5a4a5a;
+  --bg-key:         rgba(255, 245, 250, 0.85);
+  --bg-key-hover:   rgba(255, 235, 245, 0.95);
+  --text-key:       #7a6a7a;
+
+  --bg-operator:        rgba(255, 235, 245, 0.7);
+  --bg-operator-hover:  rgba(255, 220, 235, 0.9);
+  --bg-clear:           rgba(240, 230, 245, 0.6);
+  --text-clear:         #8a7a8a;
+
+  --shadow: 0 8px 32px rgba(200, 170, 210, 0.3);
+  --border-grid: rgba(220, 200, 225, 0.4);
+
+  --accent:          #f5a89a;
+  --accent-hover:    #ef9585;
+  --accent-text:     #ffffff;
+}
+
+[data-theme="dark"] {
+  /* --- Тёмная лавандово-сливовая тема --- */
+  --bg-calculator:  rgba(58, 48, 68, 0.9);
+  --bg-display:     #3a2f44;
+  --text-display:   #e8ddf0;
+  --bg-key:         rgba(70, 58, 82, 0.75);
+  --bg-key-hover:   rgba(85, 70, 100, 0.9);
+  --text-key:       #e0d0e8;
+
+  --bg-operator:        rgba(80, 65, 95, 0.75);
+  --bg-operator-hover:  rgba(100, 82, 118, 0.9);
+  --bg-clear:           rgba(80, 65, 95, 0.6);
+  --text-clear:         #c8b8d0;
+
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --border-grid: rgba(255, 255, 255, 0.06);
+
+  --accent:          #f5a89a;
+  --accent-hover:    #ef9585;
+  --accent-text:     #3a2f44;
+}
+
+/* ============================================================
+   🎨 АКЦЕНТНЫЕ ПАЛИТРЫ — ПАСТЕЛЬНЫЕ
+   ============================================================ */
+[data-accent="orange"] {
+  --accent:       #f5a89a;
+  --accent-hover: #ef9585;
+  --accent-text:  #ffffff;
+}
+
+[data-accent="blue"] {
+  --accent:       #a8c8e8;
+  --accent-hover: #92b8dc;
+  --accent-text:  #ffffff;
+}
+
+[data-accent="green"] {
+  --accent:       #a8d8b9;
+  --accent-hover: #92c8a5;
+  --accent-text:  #ffffff;
+}
+
+[data-accent="pink"] {
+  --accent:       #f5b8d0;
+  --accent-hover: #efa5c2;
+  --accent-text:  #ffffff;
+}
+
+[data-accent="purple"] {
+  --accent:       #c8b0e0;
+  --accent-hover: #b89cd4;
+  --accent-text:  #ffffff;
+}
+
+/* ============================================================
+   🧮 КАЛЬКУЛЯТОР
+   ============================================================ */
+.calculator {
+  max-width: 20em;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  background: var(--bg-calculator);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ============================================================
+   🎛️ ПАНЕЛЬ УПРАВЛЕНИЯ — внутри калькулятора
+   ============================================================ */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--bg-display);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  gap: 8px;
+}
+
+.theme-toggle,
+.sound-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-display);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover,
+.sound-toggle:hover  { background: rgba(0, 0, 0, 0.12); transform: scale(1.08); }
+.theme-toggle:active,
+.sound-toggle:active { transform: scale(0.95); }
+
+[data-theme="dark"] .theme-toggle,
+[data-theme="dark"] .sound-toggle {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .theme-toggle:hover,
+[data-theme="dark"] .sound-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Палитра акцентов --- */
+.accent-picker {
+  display: flex;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.06);
+  flex-grow: 1;
+  justify-content: center;
+}
+
+[data-theme="dark"] .accent-picker {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.accent-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.accent-dot:hover { transform: scale(1.2); }
+
+.accent-dot[data-accent="orange"] { background: #f5a89a; }
+.accent-dot[data-accent="blue"]   { background: #a8c8e8; }
+.accent-dot[data-accent="green"]  { background: #a8d8b9; }
+.accent-dot[data-accent="pink"]   { background: #f5b8d0; }
+.accent-dot[data-accent="purple"] { background: #c8b0e0; }
+
+.accent-dot.is-active {
+  border-color: var(--text-display);
+  transform: scale(1.2);
+}
+
+/* ============================================================
+   📟 ДИСПЛЕЙ
+   ============================================================ */
+.calculator__display {
+  background-color: var(--bg-display);
+  color: var(--text-display);
+  font-family: 'Comfortaa', cursive;
+  font-size: 1.714285714em;
+  padding: 0.5em 0.75em;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================================
+   ⌨️ КЛАВИШИ
+   ============================================================ */
+.calculator__keys {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--border-grid);
+  transition: background 0.3s ease;
+}
+
+.calculator__keys > * {
+  background: var(--bg-key);
+  color: var(--text-key);
+  font-family: 'Comfortaa', cursive;
+  padding: 0.5em 1.25em;
+  position: relative;
+  text-align: center;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.calculator__keys > *:active,
+.calculator__keys > *:hover {
+  background: var(--bg-key-hover);
+}
+
+/* --- Операторы --- */
+.key--operator {
+  background: var(--bg-operator);
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.key--operator:hover {
+  background: var(--bg-operator-hover);
+}
+
+.key--operator.is-depressed {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+/* --- Кнопка "равно" --- */
+.key--equal {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: bold;
+  grid-column: -2 / -1;
+  grid-row: 2 / span 4;
+}
+
+.key--equal:hover {
+  background: var(--accent-hover);
+}
+
+/* --- Кнопка "AC" / "CE" --- */
+[data-action="clear"] {
+  background: var(--bg-clear);
+  color: var(--text-clear);
+  font-weight: bold;
+}
+
+/* ============================================================
+   🐱 КОТИК В ПРАВОМ НИЖНЕМ УГЛУ
+   ============================================================ */
+.cat-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-calculator);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  padding: 0;
+  transition: transform 0.2s ease, background 0.3s ease;
+  z-index: 100;
+  user-select: none;
+}
+
+.cat-btn:hover  { transform: scale(1.1); }
+.cat-btn:active { transform: scale(0.95); }
+
+.cat-btn__emoji {
+  display: inline-block;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+/* ============================================================
+   🎬 АНИМАЦИИ КОТИКА
+   ============================================================ */
+@keyframes cat-shake {
+  0%   { transform: rotate(0deg); }
+  15%  { transform: rotate(-15deg); }
+  30%  { transform: rotate(15deg); }
+  45%  { transform: rotate(-10deg); }
+  60%  { transform: rotate(10deg); }
+  75%  { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes cat-spin-btn {
+  0%   { transform: rotate(0deg)   scale(1); }
+  50%  { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.cat-btn__emoji.is-shaking {
+  animation: cat-shake 0.6s ease-in-out;
+}
+
+.cat-btn__emoji.is-spinning {
+  animation: cat-spin-btn 0.7s ease-in-out;
+}
+
+/* ============================================================
+   🌧️ ДОЖДИК ИЗ КОТИКОВ
+   ============================================================ */
+.cat-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.cat-drop {
+  position: absolute;
+  top: -60px;
+  font-size: 2rem;
+  user-select: none;
+  will-change: transform;
+  animation-name: cat-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cat-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   📱 АДАПТИВ
+   ============================================================ */
+@media (max-width: 480px) {
+  html { font-size: 140%; }
+
+  .loading { padding: 30px 20px; }
+  .loading__title { font-size: 1.3rem; }
+  .loading__anim { font-size: 2.6rem; }
+
+  .cat-btn { width: 56px; height: 56px; font-size: 1.7rem; }
+  .controls { padding: 8px 10px; gap: 6px; }
+  .theme-toggle, .sound-toggle { width: 32px; height: 32px; font-size: 0.9rem; }
+  .accent-dot { width: 14px; height: 14px; }
+}
