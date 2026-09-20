@@ -1,2 +1,3 @@
 # catculator-with-cat-loading-screen
-pretty self explanatory
+
+repo to deploy, 2 projects combined

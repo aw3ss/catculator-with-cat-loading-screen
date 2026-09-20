@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Calculator 🐱</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 🐱 Лоадер -->
+  <div class="loader" id="loader">
+    <section class="loading">
+      <span class="loading__title">Загружаем котиков...</span>
+      <span class="loading__author"> - tutorials by Emmanuel Ohans and Zell Liew</span>
+      <span class="loading__anim" id="cat-loader">🐱</span>
+    </section>
+  </div>
+
+  <!-- 🧮 Калькулятор -->
+  <main class="app" id="app">
+    <div class="calculator">
+
+      <!-- 🎛️ Панель управления внутри калькулятора -->
+      <div class="controls">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-toggle__icon">🌙</span>
+        </button>
+
+        <div class="accent-picker" id="accent-picker">
+          <button class="accent-dot" data-accent="orange" aria-label="Orange accent"></button>
+          <button class="accent-dot" data-accent="blue"   aria-label="Blue accent"></button>
+          <button class="accent-dot" data-accent="green"  aria-label="Green accent"></button>
+          <button class="accent-dot" data-accent="pink"   aria-label="Pink accent"></button>
+          <button class="accent-dot" data-accent="purple" aria-label="Purple accent"></button>
+        </div>
+      </div>
+
+      <div class="calculator__display">0</div>
+      <div class="calculator__keys">
+        <button class="key--operator" data-action="add">+</button>
+        <button class="key--operator" data-action="subtract">-</button>
+        <button class="key--operator" data-action="multiply">×</button>
+        <button class="key--operator" data-action="divide">÷</button>
+
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>0</button>
+        <button data-action="decimal">.</button>
+        <button data-action="clear">AC</button>
+        <button class="key--equal" data-action="calculate">=</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- 🐱 Котик — вне .app, чтобы position: fixed работал корректно -->
+  <button class="cat-btn" id="cat-btn" aria-label="Play cat animation">
+    <span class="cat-btn__emoji">🐱</span>
+  </button>
+
+  <!-- 🌧️ Дождик — тоже вне .app -->
+  <div class="cat-rain" id="cat-rain" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
